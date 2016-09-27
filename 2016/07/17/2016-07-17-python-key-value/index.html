@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="wting" />
+
+
+
+<meta name="description" content="python 操作 memcachedMemcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 操作 memcached、redis">
+<meta property="og:url" content="http://dxtywt.github.io/2016/07/17/2016-07-17-python-key-value/index.html">
+<meta property="og:site_name" content="小站">
+<meta property="og:description" content="python 操作 memcachedMemcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。">
+<meta property="og:updated_time" content="2016-08-19T09:55:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python 操作 memcached、redis">
+<meta name="twitter:description" content="python 操作 memcachedMemcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="小站" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>python 操作 memcached、redis | 小站</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">wting</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/wting1001@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="/dxtywt@github.com" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-module/">Python module</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">wting</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">wting</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/wting1001@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="/dxtywt@github.com" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-07-17-python-key-value" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/17/2016-07-17-python-key-value/" class="article-date">
+      <time datetime="2016-07-16T16:00:00.000Z" itemprop="datePublished">2016-07-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python 操作 memcached、redis
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <excerpt in="" index="" |="" 首页摘要=""> 
+
+<h2 id="python-操作-memcached"><a href="#python-操作-memcached" class="headerlink" title="python 操作 memcached"></a>python 操作 memcached</h2><p><strong>Memcached</strong> 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个<strong>存储键/值对</strong>的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。</p>
+<a id="more"></a>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h3 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h3><p>1、编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">yum install libevent-devel (依赖libevent)</div><div class="line">wget http://memcached.org/latest</div><div class="line">tar -zxvf memcached-1.x.x.tar.gz</div><div class="line">cd memcached-1.x.x</div><div class="line">./configure &amp;&amp; make &amp;&amp; make test &amp;&amp; sudo make install</div></pre></td></tr></table></figure>
+<p>2、yum安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y memcached</div></pre></td></tr></table></figure>
+<p>3、操作memcached使用python-memcached模块</p>
+<pre><code>pip3 install python-memcached
+</code></pre><h3 id="启动服务："><a href="#启动服务：" class="headerlink" title="启动服务："></a>启动服务：</h3><pre><code>memcached -d -m 10 -u root -l 10.10.20.205 -p 11211 -c 50 -P /tmp/memcached.pid
+
+usage:
+    -d：启动守护进程
+    -m：指定分配内存大小，单位（MB）
+    -u：运行memcached的用户
+    -l：监听ip
+    -p：监听端口，默认11211
+    -P：指定pid文件
+    -c：最大并发
+</code></pre><h3 id="基本操作："><a href="#基本操作：" class="headerlink" title="基本操作："></a>基本操作：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> memcache</div><div class="line"></div><div class="line">mem = memcache.Client([<span class="string">'10.0.0.7:11211'</span>,], debug=<span class="keyword">True</span>)</div><div class="line">mem.set(<span class="string">"key1"</span>,<span class="string">"value1"</span>)</div><div class="line">ret = mem.get(<span class="string">'key1'</span>)</div><div class="line">print(ret)</div></pre></td></tr></table></figure>
+<p><code>add(&quot;key1&quot;,&quot;value1&quot;)</code> 添加一条键值对，如果已经存在的 key，重复执行add操作异常</p>
+<p><code>replace(&quot;key1&quot;,&quot;value2&quot;)</code>  修改某个key的值，如果key不存在，则异常</p>
+<p><code>set(&quot;key1&quot;,&quot;value1&quot;)</code>  设置一个键值对，如果key不存在，则创建，如果key存在，则修改</p>
+<p><code>set_multi({&#39;name&#39;:&#39;tom&#39;,&#39;age&#39;:&#39;1&#39;})</code>   设置多个键值对，如果key不存在，则创建，如果key存在，则修改</p>
+<p><code>delete(&quot;key1&quot;)</code>  在Memcached中删除指定的一个键值对</p>
+<p><code>delete_multi({&#39;name&#39;,&#39;age&#39;})</code>    在Memcached中删除指定的多个键值对</p>
+<p><code>get(&quot;name&quot;)</code>            获取一个键值对</p>
+<p><code>get_multi([&quot;age&quot;,&quot;name&quot;])</code>   获取多一个键值对，参数为多个key组成的list</p>
+<p><code>append(&quot;name&quot;,&quot;cat&quot;)</code>   修改指定key的值，在该值 <strong><code>后面</code></strong> 追加内容</p>
+<p><code>prepend(&quot;name&quot;,&quot;lovely&quot;)</code>  修改指定key的值，在该值 <code>前面</code> 插入内容</p>
+<p><code>incr(&#39;age&#39;)</code>  自增，将Memcached中的某一个值增加 N （ N默认为1 ）</p>
+<p><code>decr(&#39;age&#39;)</code> 自减，将Memcached中的某一个值减少 N （ N默认为1 ）</p>
+<p><code>gets</code> 和 <code>cas</code> 使用gets和cas解决多client读写同一key数据的问题</p>
+<pre><code>mem = memcache.Client([&apos;10.211.55.4:12000&apos;], debug=True, cache_cas=True)
+v = mem.gets(&apos;product_count&apos;)
+mem.cas(&apos;product_count&apos;, &quot;899&quot;)
+</code></pre><p><strong>CAS协议原理如下：</strong></p>
+<ul>
+<li>第一步，A取出数据对象X，并获取到CAS-ID1；</li>
+<li>第二步，B取出数据对象X，并获取到CAS-ID2；</li>
+<li>第三步，B修改数据对象X，在写入缓存前，检查CAS-ID2与缓存空间中该数据的CAS-ID是否一致。结果是“一致”，就将修改后的带有CAS-ID2的X写入到缓存。</li>
+<li>第四步，A修改数据对象Y，在写入缓存前，检查CAS-ID1与缓存空间中该数据的CAS-ID是否一致。结果是“不一致”，则拒绝写入，返回存储失败。</li>
+</ul>
+<blockquote>
+<p>Ps：debug = True 表示运行出现错误时，现实错误信息，上线后移除该参数。</p>
+</blockquote>
+<h3 id="集群支持："><a href="#集群支持：" class="headerlink" title="集群支持："></a>集群支持：</h3><p>python-memcached模块原生支持集群操作，其原理是在内存维护一个主机列表，且集群中主机的权重值和主机在列表中重复出现的次数成正比</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">主机</th>
+<th style="text-align:center">权重</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">10.0.0.2</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">10.0.0.3</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">10.0.0.4</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>内存中主机列表：</p>
+<pre><code>host_list = [&quot;10.0.0.2&quot;,&quot;10.0.0.3&quot;,&quot;10.0.0.3&quot;,&quot;10.0.0.4&quot;]
+</code></pre><p>集群原理：以创建 k1 = “v1” 为例：</p>
+<ul>
+<li>根据算法将 k1 转换成一个数字</li>
+<li>将数字和主机列表长度求余数，得到一个值 N（ 0 &lt;= N &lt; 列表长度 ）</li>
+<li>上步得到的及时目标主机的在主机列表中的索引值，根据索引获取主机</li>
+<li>连接主机，进行对应操作</li>
+</ul>
+<p>操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mems = memcache.Client([(&apos;10.0.0.2:11211&apos;,1),(&apos;10.0.0.3:11211&apos;,2),(&apos;10.0.0.4:11211&apos;,1),])</div><div class="line">mems.set(&apos;k1&apos;,&apos;v1&apos;)</div></pre></td></tr></table></figure>
+<h2 id="python-操作-Redis"><a href="#python-操作-Redis" class="headerlink" title="python 操作 Redis"></a>python 操作 Redis</h2><p><strong>redis</strong> 是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。</p>
+<h3 id="安装：-1"><a href="#安装：-1" class="headerlink" title="安装："></a>安装：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># redis服务端</div><div class="line">wget http://download.redis.io/releases/redis-3.0.6.tar.gz</div><div class="line">tar xzf redis-3.0.6.tar.gz</div><div class="line">cd redis-3.0.6</div><div class="line">make</div><div class="line"></div><div class="line"># python操作redis api</div><div class="line">pip3 install redis</div></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre><code>服务端： src/redis-server
+客户端： src/redis-cli
+</code></pre><p>1、操作模式：</p>
+<p>redis-py提供两个类Redis和StrictRedis用于实现Redis的命令，StrictRedis用于实现大部分官方的命令，并使用官方的语法和命令，Redis是StrictRedis的子类，用于向后兼容旧版本的redis-py。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import redis</div><div class="line"></div><div class="line">r = redis.Redis(host=&apos;10.0.0.7&apos;,port=6379)</div><div class="line">r.set(&apos;foo&apos;,&apos;bar&apos;)</div><div class="line">print(r.get(&apos;foo&apos;))</div></pre></td></tr></table></figure>
+<p>2、连接池：</p>
+<p>redis-py使用connection pool来管理对一个redis server的所有连接，避免每次建立、释放连接的开销。默认，每个Redis实例都会维护一个自己的连接池。可以直接建立一个连接池，然后作为参数Redis，这样就可以实现多个Redis实例共享一个连接池。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import redis</div><div class="line"></div><div class="line">pool = redis.ConnectionPool(host=&apos;10.0.0.7&apos;,port=6379)</div><div class="line">r = redis.Redis(connection_pool=pool)</div><div class="line">r.set(&apos;foo&apos;,&apos;bar&apos;)</div><div class="line">print(r.get(&apos;foo&apos;))</div></pre></td></tr></table></figure>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="String-操作"><a href="#String-操作" class="headerlink" title="String 操作"></a>String 操作</h4><blockquote>
+<p>redis中的String在在内存中按照一个name对应一个value来存储</p>
+</blockquote>
+<p><code>set(name, value, ex=None, px=None, nx=False, xx=False)</code> 在Redis中设置值，默认，不存在则创建，存在则修改</p>
+<pre><code>参数：
+    ex，过期时间（秒）
+    px，过期时间（毫秒）
+    nx，如果设置为True，则只有name不存在时，当前set操作才执行
+    xx，如果设置为True，则只有name存在时，当前set操作才执行
+</code></pre><p><code>setnx(name, value)</code> 设置值，只有name不存在时，执行设置操作（添加）</p>
+<p><code>setex(self, name, value, time)</code> Set the value and expiration(过期时间，单位(s)) of a key</p>
+<p><code>psetex(name, time_ms, value)</code> Set the value and expiration(过期时间，单位(ms)) in milliseconds of a key</p>
+<p><code>mset(*args, **kwargs)</code> 批量设置值</p>
+<p><code>get(name)</code> 获取值</p>
+<p><code>mget(keys, *args)</code> 批量获取</p>
+<p><code>getset(name, value)</code> 设置新值并获取原来的值</p>
+<p><code>getrange(key, start, end)</code> 获取子序列，根据字节获取，非字符</p>
+<p><code>setrange(name, offset, value)</code> 修改字符串内容，从指定字符串索引开始向后替换（新值太长时，则向后添加）</p>
+<p><code>setbit(name, offset, value)</code> 对name对应值的二进制表示的位进行操作</p>
+<p><code>getbit(name, offset)</code> 获取name对应的值的二进制表示中的某位的值 （0或1）</p>
+<p><code>bitcount(key, start=None, end=None)</code> 获取name对应的值的二进制表示中 1 的个数</p>
+<p><code>bitop(operation, dest, *keys)</code> 获取多个值，并将值做位运算，将最后的结果保存至新的name对应的值</p>
+<pre><code>bitop(&quot;AND&quot;, &apos;new_name&apos;, &apos;n1&apos;, &apos;n2&apos;, &apos;n3&apos;)
+# 获取Redis中n1,n2,n3对应的值，然后讲所有的值做位运算（求并集），然后将结果保存 new_name 对应的值中
+</code></pre><p><code>strlen(name)</code> 返回name对应值的字节长度（一个汉字3个字节）</p>
+<p><code>incr(self, name, amount=1)</code> 自增 name对应的值，当name不存在时，则创建name＝amount，否则，则自增。amount必须为整数</p>
+<p><code>incrbyfloat(self, name, amount=1.0)</code> 自增 name对应的值，当name不存在时，则创建name＝amount，否则，则自增。amount（浮点型）</p>
+<p><code>decr(self, name, amount=1)</code>  自减 name对应的值，当name不存在时，则创建name＝amount，否则，则自减。</p>
+<p><code>append(key, value)</code> 在redis name对应的值后面追加内容</p>
+<h4 id="Hash-操作"><a href="#Hash-操作" class="headerlink" title="Hash 操作"></a>Hash 操作</h4><p><code>hset(name, key, value)</code> name对应的hash中设置一个键值对（不存在，则创建；否则，修改）</p>
+<pre><code># name，redis的name
+# key，name对应的hash中的key
+# value，name对应的hash中的value
+</code></pre><p><code>hsetnx(name, key, value)</code> 当name对应的hash中不存在当前key时则创建（相当于添加）</p>
+<p><code>hmset(name, mapping)</code> 在name对应的hash中批量设置键值对</p>
+<pre><code># name，redis的name
+# mapping，字典，如：{&apos;k1&apos;:&apos;v1&apos;, &apos;k2&apos;: &apos;v2&apos;}
+# r.hmset(&apos;xx&apos;, {&apos;k1&apos;:&apos;v1&apos;, &apos;k2&apos;: &apos;v2&apos;})
+</code></pre><p><code>hget(name,key)</code> 在name对应的hash中获取根据key获取value</p>
+<p><code>hmget(name, keys, *args)</code> 在name对应的hash中获取多个key的值</p>
+<pre><code># name，reids对应的name
+# keys，要获取key集合，如：[&apos;k1&apos;, &apos;k2&apos;, &apos;k3&apos;]
+# *args，要获取的key，如：k1,k2,k3
+# r.mget(&apos;xx&apos;, [&apos;k1&apos;, &apos;k2&apos;])
+# r.hmget(&apos;xx&apos;, &apos;k1&apos;, &apos;k2&apos;)
+</code></pre><p><code>hgetall(name)</code> 获取name对应hash的所有键值</p>
+<p><code>hlen(name)</code> 获取name对应的hash中键值对的个数</p>
+<p><code>hkeys(name)</code> 获取name对应的hash中所有的key的值</p>
+<p><code>hvals(name)</code> 获取name对应的hash中所有的value的值</p>
+<p><code>hexists(name, key)</code> 检查name对应的hash是否存在当前传入的key</p>
+<p><code>hdel(name,*keys)</code> 将name对应的hash中指定key的键值对删除</p>
+<p><code>hincrby(name, key, amount=1)</code> 自增name对应的hash中的指定key的值，不存在则创建key=amount</p>
+<pre><code># name，redis中的name
+# key， hash对应的key
+# amount，自增数（整数）
+</code></pre><p><code>hincrbyfloat(name, key, amount=1.0)</code> 自增name对应的hash中的指定key的值，不存在则创建key=amount</p>
+<pre><code># name，redis中的name
+# key， hash对应的key
+# amount，自增数（浮点数）
+</code></pre><p><code>hscan(name, cursor=0, match=None, count=None)</code> 增量式迭代获取，对于数据大的数据非常有用，hscan可以实现分片的获取数据，并非一次性将数据全部获取完，从而放置内存被撑爆</p>
+<pre><code># name，redis的name
+# cursor，游标（基于游标分批取获取数据）
+# match，匹配指定key，默认None 表示所有的key
+# count，每次分片最少获取个数，默认None表示采用Redis的默认分片个数
+
+# 第一次：cursor1, data1 = r.hscan(&apos;xx&apos;, cursor=0, match=None, count=None)
+# 第二次：cursor2, data1 = r.hscan(&apos;xx&apos;, cursor=cursor1, match=None, count=None)
+# ...
+# 直到返回值cursor的值为0时，表示数据已经通过分片获取完毕
+</code></pre><p><code>hscan_iter(name, match=None, count=None)</code> 利用yield封装hscan创建生成器，实现分批去redis中获取数据</p>
+<pre><code># match，匹配指定key，默认None 表示所有的key
+# count，每次分片最少获取个数，默认None表示采用Redis的默认分片个数
+
+# for item in r.hscan_iter(&apos;xx&apos;):
+#     print item
+</code></pre><h4 id="List-操作"><a href="#List-操作" class="headerlink" title="List 操作"></a>List 操作</h4><p>redis中的List在在内存中按照一个name对应一个List来存储</p>
+<p><code>lpush(name,values)</code> 在name对应的list中添加元素，每个新的元素都添加到列表的最左边</p>
+<pre><code># r.lpush(&apos;oo&apos;, 11,22,33)
+# 保存顺序为: 33,22,11
+</code></pre><p><code>rpush(name, values)</code> 表示从右向左操作</p>
+<p><code>lpushx(name,value)</code> 在name对应的list中添加元素，只有name已经存在时，值添加到列表的最左边</p>
+<p><code>rpushx(name, value)</code> 表示从右向左操作</p>
+<p><code>llen(name)</code> name对应的list元素的个数</p>
+<p><code>linsert(name, where, refvalue, value))</code> 在name对应的列表的某一个值前或后插入一个新值</p>
+<pre><code># name，redis的name
+# where，BEFORE或AFTER
+# refvalue，标杆值，即：在它前后插入数据
+# value，要插入的数据
+</code></pre><p><code>r.lset(name, index, value)</code> 对name对应的list中的某一个索引位置重新赋值</p>
+<pre><code># name，redis的name
+# index，list的索引位置
+# value，要设置的值
+</code></pre><p><code>r.lrem(name, value, num)</code> 在name对应的list中删除指定的值</p>
+<pre><code># name，redis的name
+# value，要删除的值
+# num，  num=0，删除列表中所有的指定值；
+       # num=2,从前到后，删除2个；
+       # num=-2,从后向前，删除2个
+</code></pre><p><code>lpop(name)</code> 在name对应的列表的左侧获取第一个元素并在列表中移除，返回值则是第一个元素</p>
+<pre><code># rpop(name) 表示从右向左操作
+</code></pre><p><code>lindex(name, index)</code> 在name对应的列表中根据索引获取列表元素</p>
+<p><code>lrange(name, start, end)</code> 在name对应的列表分片获取数据</p>
+<pre><code># name，redis的name
+# start，索引的起始位置
+# end，索引结束位置
+</code></pre><p><code>ltrim(name, start, end)</code> 在name对应的列表中移除没有在start-end索引之间的值</p>
+<pre><code># name，redis的name
+# start，索引的起始位置
+# end，索引结束位置
+</code></pre><p><code>rpoplpush(src, dst)</code> 从一个列表取出最右边的元素，同时将其添加至另一个列表的最左边</p>
+<pre><code># src，要取数据的列表的name
+# dst，要添加数据的列表的name
+</code></pre><p><code>blpop(keys, timeout)</code> 将多个列表排列，按照从左到右去pop对应列表的元素</p>
+<pre><code># keys，redis的name的集合
+# timeout，超时时间，当元素所有列表的元素获取完之后，阻塞等待列表内有数据的时间（秒）, 0 表示永远阻塞
+</code></pre><p><code>brpop(keys, timeout)</code> 从右向左获取数据</p>
+<p><code>brpoplpush(src, dst, timeout=0)</code> 从一个列表的右侧移除一个元素并将其添加到另一个列表的左侧</p>
+<pre><code># src，取出并要移除元素的列表对应的name
+# dst，要插入元素的列表对应的name
+# timeout，当src对应的列表中没有数据时，阻塞等待其有数据的超时时间（秒），0 表示永远阻塞
+</code></pre><p>自定义增量迭代</p>
+<p>由于redis类库中没有提供对列表元素的增量迭代，如果想要循环name对应的列表的所有元素，那么就需要：</p>
+<ul>
+<li>1、获取name对应的所有列表</li>
+<li>2、循环列表</li>
+</ul>
+<p>但是，如果列表非常大，那么就有可能在第一步时就将程序的内容撑爆，所有有必要自定义一个增量迭代的功能：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">def list_iter(name):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    自定义redis列表增量迭代</div><div class="line">    :param name: redis中的name，即：迭代name对应的列表</div><div class="line">    :return: yield 返回 列表元素</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    list_count = r.llen(name)</div><div class="line">    for index in xrange(list_count):</div><div class="line">        yield r.lindex(name, index)</div><div class="line"> </div><div class="line"># 使用</div><div class="line">for item in list_iter(&apos;pp&apos;):</div><div class="line">    print item</div></pre></td></tr></table></figure>
+<h4 id="Set-操作"><a href="#Set-操作" class="headerlink" title="Set 操作"></a>Set 操作</h4><p>Set操作，Set集合就是不允许重复的列表</p>
+<p><code>sadd(name,values)</code> name对应的集合中添加元素</p>
+<p><code>scard(name)</code> 获取name对应的集合中元素个数</p>
+<p><code>sdiff(keys, *args)</code> 在第一个name对应的集合中且不在其他name对应的集合的元素集合</p>
+<p><code>sdiffstore(dest, keys, *args)</code>  获取第一个name对应的集合中且不在其他name对应的集合，再将其新加入到dest对应的集合中</p>
+<p><code>sinter(keys, *args)</code> 获取多一个name对应集合的并集</p>
+<p><code>sinterstore(dest, keys, *args)</code> 获取多个name对应集合的并集，再将其加入到dest对应的集合中</p>
+<p><code>sismember(name, value)</code> 检查value是否是name对应的集合的成员</p>
+<p><code>smembers(name)</code> 获取name对应的集合的所有成员</p>
+<p><code>smove(src, dst, value)</code> 将某个成员从一个集合中移动到另外一个集合</p>
+<p><code>spop(name)</code> 从集合的右侧（尾部）移除一个成员，并将其返回</p>
+<p><code>srandmember(name, numbers)</code> 从name对应的集合中随机获取 numbers 个元素</p>
+<p><code>srem(name, values)</code> 在name对应的集合中删除某些值</p>
+<p><code>sunion(keys, *args)</code> 获取多一个name对应的集合的并集</p>
+<p><code>sunionstore(dest,keys, *args)</code> 获取多一个name对应的集合的并集，并将结果保存到dest对应的集合中</p>
+<p><code>sscan(name, cursor=0, match=None, count=None)</code><br><code>sscan_iter(name, match=None, count=None)</code> 同字符串的操作，用于增量迭代分批获取元素，避免内存消耗太大</p>
+<h4 id="Sort-Set-操作"><a href="#Sort-Set-操作" class="headerlink" title="Sort Set 操作"></a>Sort Set 操作</h4><p>有序集合，在集合的基础上，为每元素排序；元素的排序需要根据另外一个值来进行比较，所以，对于有序集合，每一个元素有两个值，即：值和分数，分数专门用来做排序。</p>
+<p><code>zadd(name, *args, **kwargs)</code> 在name对应的有序集合中添加元素</p>
+<pre><code># zadd(&apos;zz&apos;, &apos;n1&apos;, 1, &apos;n2&apos;, 2)
+# 或
+# zadd(&apos;zz&apos;, n1=11, n2=22)
+</code></pre><p><code>zcard(name)</code> 获取name对应的有序集合元素的数量</p>
+<p><code>zcount(name, min, max)</code> 获取name对应的有序集合中分数 在 [min,max] 之间的个数</p>
+<p><code>zincrby(name, value, amount)</code> 自增name对应的有序集合的 name 对应的分数</p>
+<p><code>zrange( name, start, end, desc=False, withscores=False, score_cast_func=float)</code>  按照索引范围获取name对应的有序集合的元素</p>
+<pre><code># name，redis的name
+# start，有序集合索引起始位置（非分数）
+# end，有序集合索引结束位置（非分数）
+# desc，排序规则，默认按照分数从小到大排序
+# withscores，是否获取元素的分数，默认只获取元素的值
+# score_cast_func，对分数进行数据转换的函数
+</code></pre><p><code>zrevrange(name, start, end, withscores=False, score_cast_func=float)</code> 从大到小排序</p>
+<p><code>zrangebyscore(name, min, max, start=None, num=None, withscores=False, score_cast_func=float)</code> 按照分数范围获取name对应的有序集合的元素</p>
+<p><code>zrevrangebyscore(name, max, min, start=None, num=None, withscores=False, score_cast_func=float)</code><br> 从大到小排序</p>
+<p><code>zrank(name, value)</code> 获取某个值在 name对应的有序集合中的排行（从 0 开始）</p>
+<p> <code>zrevrank(name, value)</code> 从大到小排序</p>
+<p><code>zrangebylex(name, min, max, start=None, num=None)</code> </p>
+<p>当有序集合的所有成员都具有相同的分值时，有序集合的元素会根据成员的 值 （lexicographical ordering）来进行排序，而这个命令则可以返回给定的有序集合键 key 中， 元素的值介于 min 和 max 之间的成员<br>对集合中的每个成员进行逐个字节的对比（byte-by-byte compare）， 并按照从低到高的顺序， 返回排序后的集合成员。 如果两个字符串有一部分内容是相同的话， 那么命令会认为较长的字符串比较短的字符串要大</p>
+<pre><code># name，redis的name
+# min，左区间（值）。 + 表示正无限； - 表示负无限； ( 表示开区间； [ 则表示闭区间
+# min，右区间（值）
+# start，对结果进行分片处理，索引位置
+# num，对结果进行分片处理，索引后面的num个元素
+
+例：
+# ZADD myzset 0 aa 0 ba 0 ca 0 da 0 ea 0 fa 0 ga
+# r.zrangebylex(&apos;myzset&apos;, &quot;-&quot;, &quot;[ca&quot;) 结果为：[&apos;aa&apos;, &apos;ba&apos;, &apos;ca&apos;]
+</code></pre><p><code>zrevrangebylex(name, max, min, start=None, num=None)</code> 从大到小排序</p>
+<p><code>zrem(name, values)</code> 删除name对应的有序集合中值是values的成员</p>
+<p><code>zremrangebyrank(name, min, max)</code>  根据排行范围删除</p>
+<p><code>zremrangebyscore(name, min, max)</code> 根据分数范围删除</p>
+<p><code>zremrangebylex(name, min, max)</code> 根据值返回删除</p>
+<p><code>zscore(name, value)</code> 获取name对应有序集合中 value 对应的分数</p>
+<p><code>zinterstore(dest, keys, aggregate=None)</code> 获取两个有序集合的交集，如果遇到相同值不同分数，则按照aggregate进行操作,aggregate的值为:  SUM  MIN  MAX</p>
+<p><code>zunionstore(dest, keys, aggregate=None)</code>  获取两个有序集合的并集，如果遇到相同值不同分数，则按照aggregate进行操作,aggregate的值为:  SUM  MIN  MAX</p>
+<p><code>zscan(name, cursor=0, match=None, count=None, score_cast_func=float)</code><br><code>zscan_iter(name, match=None, count=None,score_cast_func=float)</code></p>
+<pre><code>同字符串相似，相较于字符串新增score_cast_func，用来对分数进行操作
+</code></pre><p>　　</p>
+<h4 id="其他常用操作"><a href="#其他常用操作" class="headerlink" title="其他常用操作"></a>其他常用操作</h4><p><code>delete(*names)</code> 根据删除redis中的任意数据类型</p>
+<p><code>exists(name)</code> 检测redis的name是否存在</p>
+<p><code>keys(pattern=&#39;*&#39;)</code> 根据模型获取redis的name</p>
+<pre><code># KEYS * 匹配数据库中所有 key 。
+# KEYS h?llo 匹配 hello ， hallo 和 hxllo 等。
+# KEYS h*llo 匹配 hllo 和 heeeeello 等。
+# KEYS h[ae]llo 匹配 hello 和 hallo ，但不匹配 hillo
+</code></pre><p><code>expire(name ,time)</code> 为某个redis的某个name设置超时时间</p>
+<p><code>rename(src, dst)</code> 对redis的name重命名为</p>
+<p><code>move(name, db))</code> 将redis的某个值移动到指定的db下</p>
+<p><code>randomkey()</code> 随机获取一个redis的name（不删除）</p>
+<p><code>type(name)</code> 获取name对应值的类型</p>
+<p><code>scan(cursor=0, match=None, count=None)</code><br><code>scan_iter(match=None, count=None)</code></p>
+<pre><code>同字符串操作，用于增量迭代获取key
+</code></pre></excerpt>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/07/17/2016-07-17-python-key-value/">python 操作 memcached、redis</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">wting</a></p>
+        <p><span>发布时间:</span>2016-07-17, 00:00:00</p>
+        <p><span>最后更新:</span>2016-08-19, 17:55:07</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/07/17/2016-07-17-python-key-value/" title="python 操作 memcached、redis">http://dxtywt.github.io/2016/07/17/2016-07-17-python-key-value/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://dxtywt.github.io/2016/07/17/2016-07-17-python-key-value/　　作者: wting" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/07/24/2016-07-24-rabbitmq-paramiko/">
+                    redis发布与订阅、rabbitmq、paramiko
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/07/17/2016-07-17-python-threading-processing-greenlet/">
+                    线程、进程、协程
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python-操作-memcached"><span class="toc-number">1.</span> <span class="toc-text">python 操作 memcached</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装："><span class="toc-number">1.1.</span> <span class="toc-text">安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动服务："><span class="toc-number">1.2.</span> <span class="toc-text">启动服务：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本操作："><span class="toc-number">1.3.</span> <span class="toc-text">基本操作：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集群支持："><span class="toc-number">1.4.</span> <span class="toc-text">集群支持：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python-操作-Redis"><span class="toc-number">2.</span> <span class="toc-text">python 操作 Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装：-1"><span class="toc-number">2.1.</span> <span class="toc-text">安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动"><span class="toc-number">2.2.</span> <span class="toc-text">启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作"><span class="toc-number">2.3.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#String-操作"><span class="toc-number">2.3.1.</span> <span class="toc-text">String 操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hash-操作"><span class="toc-number">2.3.2.</span> <span class="toc-text">Hash 操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List-操作"><span class="toc-number">2.3.3.</span> <span class="toc-text">List 操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set-操作"><span class="toc-number">2.3.4.</span> <span class="toc-text">Set 操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sort-Set-操作"><span class="toc-number">2.3.5.</span> <span class="toc-text">Sort Set 操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他常用操作"><span class="toc-number">2.3.6.</span> <span class="toc-text">其他常用操作</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"python 操作 memcached、redis　| 小站　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://dxtywt.github.io/2016/07/17/2016-07-17-python-key-value/';
+            this.page.identifier = '2016/07/17/2016-07-17-python-key-value/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//wting1001.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/07/24/2016-07-24-rabbitmq-paramiko/" title="上一篇: redis发布与订阅、rabbitmq、paramiko">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/07/17/2016-07-17-python-threading-processing-greenlet/" title="下一篇: 线程、进程、协程">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/14/2016-08-14-javascript/">JavaScript</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/07/2016-08-07-css/">Css小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/sqlalchemy/">SQLAlchemy 操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/31/2016-07-31-sqlalchmey/">mysql ORM 框架 SQLAlcemy 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/31/2016-07-31-paramiko/">paramiko 模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/24/2016-07-24-python-mysql/">mysql基本操作及python操作mysql</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/24/2016-07-24-rabbitmq-paramiko/">redis发布与订阅、rabbitmq、paramiko</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/17/2016-07-17-python-key-value/">python 操作 memcached、redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/17/2016-07-17-python-threading-processing-greenlet/">线程、进程、协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/10/2016-07-10-python-day10/">I/O 多路复用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/03/2016-07-03-python-socket/">Socket 网络编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/30/2016-06-30-python-image/">PIL 图像处理模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/多线程、进程、协程/">多线程、进程、协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/03/opration/">装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/20/2016-04-20-python-basic/">day01-python基础知识</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 wting
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

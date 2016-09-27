@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="wting" />
+
+
+
+<meta name="description" content="前言css是英文Cascading Style Sheets的缩写,称为层叠样式表，定义如何显示 HTML 元素,用于对页面进行美化。
+存在方式有三种(优先级依序)：
+1. 内联样式：在标签中使用 style=&amp;apos;xx:xxx;&amp;apos;
+2. 内部样式表：在页面中嵌入 &amp;lt; style type=&amp;quot;text/css&amp;quot;&amp;gt; &amp;lt;/style &amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Css小记">
+<meta property="og:url" content="http://dxtywt.github.io/2016/08/07/2016-08-07-css/index.html">
+<meta property="og:site_name" content="小站">
+<meta property="og:description" content="前言css是英文Cascading Style Sheets的缩写,称为层叠样式表，定义如何显示 HTML 元素,用于对页面进行美化。
+存在方式有三种(优先级依序)：
+1. 内联样式：在标签中使用 style=&amp;apos;xx:xxx;&amp;apos;
+2. 内部样式表：在页面中嵌入 &amp;lt; style type=&amp;quot;text/css&amp;quot;&amp;gt; &amp;lt;/style &amp;gt;">
+<meta property="og:updated_time" content="2016-08-19T09:48:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Css小记">
+<meta name="twitter:description" content="前言css是英文Cascading Style Sheets的缩写,称为层叠样式表，定义如何显示 HTML 元素,用于对页面进行美化。
+存在方式有三种(优先级依序)：
+1. 内联样式：在标签中使用 style=&amp;apos;xx:xxx;&amp;apos;
+2. 内部样式表：在页面中嵌入 &amp;lt; style type=&amp;quot;text/css&amp;quot;&amp;gt; &amp;lt;/style &amp;gt;">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="小站" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Css小记 | 小站</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">wting</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/wting1001@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="/dxtywt@github.com" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-module/">Python module</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">wting</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">wting</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/wting1001@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="/dxtywt@github.com" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-08-07-css" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/07/2016-08-07-css/" class="article-date">
+      <time datetime="2016-08-06T16:00:00.000Z" itemprop="datePublished">2016-08-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Css小记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p></p><h2 id="intro">前言</h2><br>css是英文Cascading Style Sheets的缩写,称为层叠样式表，定义如何显示 HTML 元素,用于对页面进行美化。<p></p>
+<p>存在方式有三种(优先级依序)：</p>
+<pre><code>1. 内联样式：在标签中使用 style=&apos;xx:xxx;&apos;
+2. 内部样式表：在页面中嵌入 &lt; style type=&quot;text/css&quot;&gt; &lt;/style &gt; 块
+3. 外部样式表：引入外部css文件
+</code></pre><a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h2 id="css-选择器"><a href="#css-选择器" class="headerlink" title="css 选择器"></a>css 选择器</h2><h3 id="id-选择器"><a href="#id-选择器" class="headerlink" title="id 选择器"></a>id 选择器</h3><pre><code>1. id 选择器可以为标有特定 id 的 HTML 元素指定特定的样式。 
+2. HTML元素以id属性来设置id选择器,CSS 中 id 选择器以 &quot;#&quot; 来定义。 
+3. ID属性不要以数字开头，数字开头的ID在 Mozilla/Firefox 浏览器中不起作用。
+</code></pre><h3 id="class-选择器"><a href="#class-选择器" class="headerlink" title="class 选择器"></a>class 选择器</h3><pre><code>1. class 选择器用于描述一组元素的样式，class 选择器有别于id选择器，class可以在多个元素中使用。 
+2. class选择器在HTML中以class属性表示, 在 CSS 中，类选择器以一个点&quot;.&quot;号显示 
+3. 类名的第一个字符不能使用数字！它无法在 Mozilla 或 Firefox 中起作用。
+</code></pre><p>Demo</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>css<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">        /*标签选择器*/</div><div class="line">        div&#123;</div><div class="line">            background-color: red;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        /*id选择器*/</div><div class="line">        #i1&#123;</div><div class="line">            background-color: aqua;</div><div class="line">            color: black;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        /*class选择器*/</div><div class="line">        .c1&#123;</div><div class="line">            background-color: black;</div><div class="line">            color: white;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        /*层级选择器*/</div><div class="line">        .c5 p a&#123;</div><div class="line">            background-color: yellow;</div><div class="line">            color: red;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        /*组合选择器*/</div><div class="line">        .c2,.c3,.c4&#123;</div><div class="line">            background-color: black;</div><div class="line">            color: white;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>测试标签选择器<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"i1"</span>&gt;</span>id选择器<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"c1"</span>&gt;</span>class 选择器<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"c5"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">a</span>&gt;</span></div><div class="line">                层级选择器</div><div class="line">            <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">hr</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"c2"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"c3"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"c4"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<h3 id="Backgrounds（背景）"><a href="#Backgrounds（背景）" class="headerlink" title="Backgrounds（背景）"></a>Backgrounds（背景）</h3><h4 id="background-color-背景颜色"><a href="#background-color-背景颜色" class="headerlink" title="background-color 背景颜色"></a>background-color 背景颜色</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;<span class="attribute">background-color</span>:<span class="number">#b0c4de</span>;&#125;</div></pre></td></tr></table></figure>
+<h4 id="background-image-背景图像"><a href="#background-image-背景图像" class="headerlink" title="background-image 背景图像"></a>background-image 背景图像</h4><p>默认情况下，背景图像进行平铺重复显示，以覆盖整个元素实体</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;<span class="attribute">background-image</span>:<span class="built_in">url</span>(<span class="string">'paper.gif'</span>);&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">background-repeat</span>: </div><div class="line">    <span class="selector-tag">repeat-x</span>;  # 水平平铺</div><div class="line">    <span class="selector-tag">repeat-y</span>;  # 垂直平铺</div><div class="line">    <span class="selector-tag">no-repeat</span>;  # 不平铺</div></pre></td></tr></table></figure>
+<h4 id="背景-简写属性"><a href="#背景-简写属性" class="headerlink" title="背景- 简写属性"></a>背景- 简写属性</h4><p>当使用简写属性时，属性值得顺序为：<br>background-color background-image background-repeat background-attachment background-position</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;<span class="attribute">background</span>:<span class="number">#ffffff</span> <span class="built_in">url</span>(<span class="string">'img_tree.png'</span>) no-repeat right top;&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Property</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">background</td>
+<td style="text-align:center">简写属性，作用是将背景属性设置在一个声明中</td>
+</tr>
+<tr>
+<td style="text-align:center">background-attachment</td>
+<td style="text-align:center">背景图像是否固定或者随着页面的其余部分滚动。</td>
+</tr>
+<tr>
+<td style="text-align:center">background-color</td>
+<td style="text-align:center">设置元素的背景颜色。</td>
+</tr>
+<tr>
+<td style="text-align:center">background-image</td>
+<td style="text-align:center">把图像设置为背景。</td>
+</tr>
+<tr>
+<td style="text-align:center">background-position</td>
+<td style="text-align:center">设置背景图像的起始位置。</td>
+</tr>
+<tr>
+<td style="text-align:center">background-repeat</td>
+<td style="text-align:center">设置背景图像是否及如何重复。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="Text文本格式"><a href="#Text文本格式" class="headerlink" title="Text文本格式"></a>Text文本格式</h3><h4 id="color"><a href="#color" class="headerlink" title="color"></a>color</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;<span class="attribute">color</span>:blue;&#125;</div><div class="line"><span class="selector-tag">h1</span> &#123;<span class="attribute">color</span>:<span class="number">#00ff00</span>;&#125;</div><div class="line"><span class="selector-tag">h2</span> &#123;<span class="attribute">color</span>:<span class="built_in">rgb</span>(255,0,0);&#125;</div></pre></td></tr></table></figure>
+<h4 id="对齐方式"><a href="#对齐方式" class="headerlink" title="对齐方式"></a>对齐方式</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">text-align</span>:</div><div class="line">    <span class="selector-tag">center</span> # 水平居中</div><div class="line">    <span class="selector-tag">right</span>\<span class="selector-tag">left</span>  # 左右  </div><div class="line">    <span class="selector-tag">justify</span> # 每一行被展开为宽度相等，左，右外边距是对齐</div></pre></td></tr></table></figure>
+<h4 id="文本修饰"><a href="#文本修饰" class="headerlink" title="文本修饰"></a>文本修饰</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> &#123;<span class="attribute">text-decoration</span>:none;&#125;  # 去除<span class="selector-tag">a</span>标签链接地址下划线</div><div class="line"><span class="selector-tag">h3</span> &#123;<span class="attribute">text-decoration</span>:underline;&#125;  # 下划线</div></pre></td></tr></table></figure>
+<h4 id="首行缩进"><a href="#首行缩进" class="headerlink" title="首行缩进"></a>首行缩进</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">text-indent</span>:<span class="number">50px</span>;&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">color</td>
+<td style="text-align:center">设置文本颜色</td>
+</tr>
+<tr>
+<td style="text-align:center">direction</td>
+<td style="text-align:center">设置文本方向。</td>
+</tr>
+<tr>
+<td style="text-align:center">letter-spacing</td>
+<td style="text-align:center">设置字符间距</td>
+</tr>
+<tr>
+<td style="text-align:center">line-height</td>
+<td style="text-align:center">设置行高</td>
+</tr>
+<tr>
+<td style="text-align:center">text-align</td>
+<td style="text-align:center">对齐元素中的文本</td>
+</tr>
+<tr>
+<td style="text-align:center">text-decoration</td>
+<td style="text-align:center">向文本添加修饰</td>
+</tr>
+<tr>
+<td style="text-align:center">text-indent</td>
+<td style="text-align:center">缩进元素中文本的首行</td>
+</tr>
+<tr>
+<td style="text-align:center">text-shadow</td>
+<td style="text-align:center">设置文本阴影</td>
+</tr>
+<tr>
+<td style="text-align:center">text-transform</td>
+<td style="text-align:center">控制元素中的字母</td>
+</tr>
+<tr>
+<td style="text-align:center">vertical-align</td>
+<td style="text-align:center">设置元素的垂直对齐</td>
+</tr>
+<tr>
+<td style="text-align:center">white-space</td>
+<td style="text-align:center">设置元素中空白的处理方式</td>
+</tr>
+<tr>
+<td style="text-align:center">word-spacing</td>
+<td style="text-align:center">设置字间距</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="Font-字体"><a href="#Font-字体" class="headerlink" title="Font 字体"></a>Font 字体</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">Property</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">font</td>
+<td style="text-align:center">在一个声明中设置所有的字体属性</td>
+</tr>
+<tr>
+<td style="text-align:center">font-family</td>
+<td style="text-align:center">指定文本的字体系列</td>
+</tr>
+<tr>
+<td style="text-align:center">font-size</td>
+<td style="text-align:center">指定文本的字体大小</td>
+</tr>
+<tr>
+<td style="text-align:center">font-style</td>
+<td style="text-align:center">指定文本的字体样式</td>
+</tr>
+<tr>
+<td style="text-align:center">font-variant</td>
+<td style="text-align:center">以小型大写字体或者正常字体显示文本。</td>
+</tr>
+<tr>
+<td style="text-align:center">font-weight</td>
+<td style="text-align:center">指定字体的粗细。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">Property</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">:link</td>
+<td style="text-align:center">正常，未访问过的链接</td>
+</tr>
+<tr>
+<td style="text-align:center">:visited</td>
+<td style="text-align:center">用户已访问过的链接</td>
+</tr>
+<tr>
+<td style="text-align:center">:hover</td>
+<td style="text-align:center">当用户鼠标放在链接上时</td>
+</tr>
+<tr>
+<td style="text-align:center">:active</td>
+<td style="text-align:center">链接被点击的那一刻</td>
+</tr>
+<tr>
+<td style="text-align:center">:before</td>
+<td style="text-align:center">在元素之前插入内容</td>
+</tr>
+<tr>
+<td style="text-align:center">:after</td>
+<td style="text-align:center">在元素之后插入内容</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="盒子模型-Box-Model"><a href="#盒子模型-Box-Model" class="headerlink" title="盒子模型(Box Model)"></a>盒子模型(Box Model)</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">Property</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Margin（外边距）</td>
+<td style="text-align:center">清除边框区域。Margin没有背景颜色，它是完全透明</td>
+</tr>
+<tr>
+<td style="text-align:center">Border（边框）</td>
+<td style="text-align:center">边框周围的填充和内容。边框是受到盒子的背景颜色影响</td>
+</tr>
+<tr>
+<td style="text-align:center">Padding（内边距）</td>
+<td style="text-align:center">清除内容周围的区域。会受到框中填充的背景颜色影响</td>
+</tr>
+<tr>
+<td style="text-align:center">Content（内容）</td>
+<td style="text-align:center">盒子的内容，显示文本和图像</td>
+</tr>
+</tbody>
+</table>
+<p><code>总元素的宽度</code>=宽度+左填充+右填充+左边框+右边框+左边距+右边距<br><code>总元素的高度</code>=高度+顶部填充+底部填充+上边框+下边框+上边距+下边距</p>
+<hr>
+<h3 id="Display-显示-与-Visibility（可见性）"><a href="#Display-显示-与-Visibility（可见性）" class="headerlink" title="Display(显示) 与 Visibility（可见性）"></a>Display(显示) 与 Visibility（可见性）</h3><ul>
+<li><p>visibility:hidden可以隐藏某个元素，但隐藏的元素仍需占用与未隐藏之前一样的空间。也就是说，该元素虽然被隐藏了，但仍然会影响布局。</p>
+</li>
+<li><p>display:none可以隐藏某个元素，且隐藏的元素不会占用任何空间。也就是说，该元素不但被隐藏了，而且该元素原本占用的空间也会从页面布局中消失。</p>
+</li>
+</ul>
+<hr>
+<h3 id="块-内联"><a href="#块-内联" class="headerlink" title="块 内联"></a>块 内联</h3><p>块元素是一个元素，占用了全部宽度，在前后都是换行符。<br>例： <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code> <code>&lt;div&gt;</code><br>内联元素只需要必要的宽度，不强制换行。<br>例： <code>&lt;span&gt;</code> <code>&lt;a&gt;</code></p>
+<p>display:inline; # 既有块标签属性， 又有内联标签属性<br>span {display:block;} # 把span元素作为块元素：</p>
+<hr>
+<h3 id="位置-position"><a href="#位置-position" class="headerlink" title="位置 position"></a>位置 position</h3><p>####Fixed </p>
+<p>元素的位置相对于浏览器窗口是固定位置。即使窗口是滚动的它也不会移动</p>
+<h4 id="absolute（绝对定位）"><a href="#absolute（绝对定位）" class="headerlink" title="absolute（绝对定位）"></a>absolute（绝对定位）</h4><p>absolute是生成觉对定位的元素，脱离了文本流（即在文档中已经不占据位置），参照浏览器的左上角通过top,right,bottom,left（简称TRBL） 定位。</p>
+<h4 id="relative（相对定位）："><a href="#relative（相对定位）：" class="headerlink" title="relative（相对定位）："></a>relative（相对定位）：</h4><p>relative是相对的意思，顾名思义就是相对于元素本身在文档中应该出现的位置来移动这个元素，可以通过TRBL来移动元素的位置，实际上该元素依然占据文档中原有的位置，只是视觉上相对原来的位置有移动。</p>
+<p>relative 与 absolute 配合使用，relative 定义一个块级标签位置，标签内的内容相对该标签固定</p>
+<hr>
+<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h3><p>clear:both;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">float  clearfix</div><div class="line"></div><div class="line">    .clearfix:after&#123;</div><div class="line">        content: &apos;.&apos;;</div><div class="line">        clear: both;</div><div class="line">        display: block;</div><div class="line">        visibility: hidden;</div><div class="line">        height: 0;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></the></excerpt>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/08/07/2016-08-07-css/">Css小记</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">wting</a></p>
+        <p><span>发布时间:</span>2016-08-07, 00:00:00</p>
+        <p><span>最后更新:</span>2016-08-19, 17:48:07</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/08/07/2016-08-07-css/" title="Css小记">http://dxtywt.github.io/2016/08/07/2016-08-07-css/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://dxtywt.github.io/2016/08/07/2016-08-07-css/　　作者: wting" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/08/14/2016-08-14-javascript/">
+                    JavaScript
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/08/04/sqlalchemy/">
+                    SQLAlchemy 操作
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#intro"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css-选择器"><span class="toc-number">2.</span> <span class="toc-text">css 选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#id-选择器"><span class="toc-number">2.1.</span> <span class="toc-text">id 选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#class-选择器"><span class="toc-number">2.2.</span> <span class="toc-text">class 选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Backgrounds（背景）"><span class="toc-number">2.3.</span> <span class="toc-text">Backgrounds（背景）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#background-color-背景颜色"><span class="toc-number">2.3.1.</span> <span class="toc-text">background-color 背景颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#background-image-背景图像"><span class="toc-number">2.3.2.</span> <span class="toc-text">background-image 背景图像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#背景-简写属性"><span class="toc-number">2.3.3.</span> <span class="toc-text">背景- 简写属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Text文本格式"><span class="toc-number">2.4.</span> <span class="toc-text">Text文本格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#color"><span class="toc-number">2.4.1.</span> <span class="toc-text">color</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对齐方式"><span class="toc-number">2.4.2.</span> <span class="toc-text">对齐方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文本修饰"><span class="toc-number">2.4.3.</span> <span class="toc-text">文本修饰</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#首行缩进"><span class="toc-number">2.4.4.</span> <span class="toc-text">首行缩进</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Font-字体"><span class="toc-number">2.5.</span> <span class="toc-text">Font 字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪类"><span class="toc-number">2.6.</span> <span class="toc-text">伪类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#盒子模型-Box-Model"><span class="toc-number">2.7.</span> <span class="toc-text">盒子模型(Box Model)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Display-显示-与-Visibility（可见性）"><span class="toc-number">2.8.</span> <span class="toc-text">Display(显示) 与 Visibility（可见性）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块-内联"><span class="toc-number">2.9.</span> <span class="toc-text">块 内联</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位置-position"><span class="toc-number">2.10.</span> <span class="toc-text">位置 position</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#absolute（绝对定位）"><span class="toc-number">2.10.1.</span> <span class="toc-text">absolute（绝对定位）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#relative（相对定位）："><span class="toc-number">2.10.2.</span> <span class="toc-text">relative（相对定位）：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#清除浮动"><span class="toc-number">2.11.</span> <span class="toc-text">清除浮动</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Css小记　| 小站　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://dxtywt.github.io/2016/08/07/2016-08-07-css/';
+            this.page.identifier = '2016/08/07/2016-08-07-css/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//wting1001.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/08/14/2016-08-14-javascript/" title="上一篇: JavaScript">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/08/04/sqlalchemy/" title="下一篇: SQLAlchemy 操作">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/14/2016-08-14-javascript/">JavaScript</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/07/2016-08-07-css/">Css小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/sqlalchemy/">SQLAlchemy 操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/31/2016-07-31-sqlalchmey/">mysql ORM 框架 SQLAlcemy 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/31/2016-07-31-paramiko/">paramiko 模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/24/2016-07-24-python-mysql/">mysql基本操作及python操作mysql</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/24/2016-07-24-rabbitmq-paramiko/">redis发布与订阅、rabbitmq、paramiko</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/17/2016-07-17-python-key-value/">python 操作 memcached、redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/17/2016-07-17-python-threading-processing-greenlet/">线程、进程、协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/10/2016-07-10-python-day10/">I/O 多路复用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/03/2016-07-03-python-socket/">Socket 网络编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/30/2016-06-30-python-image/">PIL 图像处理模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/多线程、进程、协程/">多线程、进程、协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/03/opration/">装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/20/2016-04-20-python-basic/">day01-python基础知识</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 wting
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

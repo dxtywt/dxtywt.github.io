@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="wting" />
+
+
+
+<meta name="description" content="变量命名变量名只能是 字母、数字或下划线的任意组合
+变量名的第一个字符不能是数字
+
+以下选用一种：
+下划线连接
+    name_of_my_son
+驼峰语法
+    NameOfMySon">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day01-python基础知识">
+<meta property="og:url" content="http://dxtywt.github.io/2016/04/20/2016-04-20-python-basic/index.html">
+<meta property="og:site_name" content="小站">
+<meta property="og:description" content="变量命名变量名只能是 字母、数字或下划线的任意组合
+变量名的第一个字符不能是数字
+
+以下选用一种：
+下划线连接
+    name_of_my_son
+驼峰语法
+    NameOfMySon">
+<meta property="og:updated_time" content="2016-08-19T09:37:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="day01-python基础知识">
+<meta name="twitter:description" content="变量命名变量名只能是 字母、数字或下划线的任意组合
+变量名的第一个字符不能是数字
+
+以下选用一种：
+下划线连接
+    name_of_my_son
+驼峰语法
+    NameOfMySon">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="小站" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>day01-python基础知识 | 小站</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">wting</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/wting1001@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="/dxtywt@github.com" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-module/">Python module</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">wting</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">wting</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/wting1001@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="/dxtywt@github.com" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-04-20-python-basic" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/20/2016-04-20-python-basic/" class="article-date">
+      <time datetime="2016-04-19T16:00:00.000Z" itemprop="datePublished">2016-04-20</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      day01-python基础知识
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""> </excerpt></p>
+<h3 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h3><pre><code>变量名只能是 字母、数字或下划线的任意组合
+变量名的第一个字符不能是数字
+
+以下选用一种：
+下划线连接
+    name_of_my_son
+驼峰语法
+    NameOfMySon
+</code></pre><a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><pre><code>单行：#
+多行：
+    &quot;&quot;&quot;
+    messages
+    messages
+    &quot;&quot;&quot;
+</code></pre><h3 id="读取用户输入"><a href="#读取用户输入" class="headerlink" title="读取用户输入"></a>读取用户输入</h3><p>python2：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">user_input = raw_input()</div><div class="line"><span class="keyword">print</span> user_input</div><div class="line"></div><div class="line">python2 调用input,直接输入字符串，会报未定义错误</div><div class="line">    &gt;&gt;&gt; user_input = raw_input(<span class="string">"name:"</span>)</div><div class="line">    name:tw</div><div class="line">    &gt;&gt;&gt; user_input = input(<span class="string">"name:"</span>)</div><div class="line">    name:ij</div><div class="line">    Traceback (most recent call last):</div><div class="line">      File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">      File <span class="string">"&lt;string&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    NameError: name <span class="string">'ij'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</div><div class="line"></div><div class="line">    &gt;&gt;&gt; user_input = input(<span class="string">"name:"</span>)</div><div class="line">    name:<span class="string">'jack'</span></div><div class="line">    &gt;&gt;&gt; <span class="keyword">print</span> user_input</div><div class="line">    jack</div></pre></td></tr></table></figure>
+<p>python3:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">user_input = input(<span class="string">""</span>)</div><div class="line">print(user_input)</div><div class="line"><span class="comment"># input 读入默认为字符串类型</span></div></pre></td></tr></table></figure>
+<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">name = input(<span class="string">"name:"</span>)</div><div class="line">age = int(input(<span class="string">"age:"</span>))</div><div class="line">job = input(<span class="string">"job:"</span>)</div><div class="line"></div><div class="line">msg = <span class="string">'''</span></div><div class="line">information of user %s :</div><div class="line">-------------------------</div><div class="line">name : %s</div><div class="line">age : %d</div><div class="line">job : %s</div><div class="line">-------------------------</div><div class="line">''' % (name,name,age,job)</div><div class="line"></div><div class="line">print(msg)</div></pre></td></tr></table></figure>
+<h3 id="导入模块"><a href="#导入模块" class="headerlink" title="导入模块"></a>导入模块</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> getpass</div><div class="line">passwd = getpass.getpass(<span class="string">"password: "</span>)</div><div class="line">pycharm 调试会显示</div><div class="line"></div><div class="line">os模块</div><div class="line">    <span class="keyword">import</span> os</div><div class="line">    os.system(<span class="string">"ls"</span>)</div><div class="line">    os.mkdir(<span class="string">'test'</span>)</div><div class="line">    <span class="comment">#记录执行结果</span></div><div class="line">    cmd_res = os.popen(<span class="string">'ls'</span>).read()</div><div class="line"></div><div class="line">sys模块</div><div class="line">    <span class="keyword">import</span> sys</div><div class="line">    print(sys.path)</div></pre></td></tr></table></figure>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><pre><code>数字
+    整型 int
+    浮点型 float
+布尔值
+    True
+    False
+字符串
+    str
+列表
+    list li = [aa,bb,cc]
+元组
+    tuple tmp = (aa,bb,cc)
+字典
+    dict di = {k1:v1,k2:v2}
+</code></pre><h4 id="if-else"><a href="#if-else" class="headerlink" title="if else"></a>if else</h4><pre><code>简单登录验证
+不具体提示用户名或密码的错误信息，提升安全性
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">user = <span class="string">"jack"</span></div><div class="line">password = <span class="string">"123456"</span></div><div class="line"></div><div class="line">username = input(<span class="string">"Username: "</span>)</div><div class="line">passwd = input(<span class="string">"Passwd: "</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> username == user:</div><div class="line">    print(<span class="string">"user is corrent"</span>)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> passwd == password:</div><div class="line">        print(<span class="string">"welcome login"</span>)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        print(<span class="string">"passwd wrong"</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    print(<span class="string">"user is not exsits!"</span>)</div><div class="line"></div><div class="line"><span class="comment">#高效模式</span></div><div class="line"><span class="keyword">if</span> username == user <span class="keyword">and</span> passwd == password:</div><div class="line">    print(<span class="string">"welcome login"</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    print(<span class="string">"Invalid username or password..."</span>)</div></pre></td></tr></table></figure>
+<h4 id="while"><a href="#while" class="headerlink" title="while"></a>while</h4><p>#猜数游戏</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">age = <span class="number">30</span></div><div class="line">flag = <span class="keyword">True</span></div><div class="line"><span class="keyword">while</span> flag:</div><div class="line">    <span class="keyword">try</span>:  <span class="comment">#包在try块中，防止输入非数字报错退出</span></div><div class="line">        guess_num = int(input(<span class="string">"num: "</span>))</div><div class="line">        <span class="keyword">if</span> guess_num == age:</div><div class="line">            print(<span class="string">"you got it!"</span>)</div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">elif</span> guess_num &gt; age:</div><div class="line">            print(<span class="string">"think small"</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            print(<span class="string">"think big"</span>)</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        print(e)</div><div class="line">        </div><div class="line">count = <span class="number">0</span></div><div class="line"><span class="keyword">while</span> count &lt; <span class="number">10</span>:</div><div class="line">    count += <span class="number">1</span></div><div class="line">    <span class="keyword">if</span> count % <span class="number">2</span> != <span class="number">0</span>:</div><div class="line">        print(<span class="string">"%d 是奇数"</span> % count)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">continue</span></div><div class="line">    <span class="keyword">if</span> count == <span class="number">7</span>:</div><div class="line">        print(<span class="string">"bye"</span>)</div><div class="line">        <span class="keyword">break</span></div></pre></td></tr></table></figure>
+<h4 id="for"><a href="#for" class="headerlink" title="for"></a>for</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">age = <span class="number">30</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</div><div class="line">    <span class="keyword">if</span> i&lt;<span class="number">3</span>:</div><div class="line">        guess_num = int(input(<span class="string">"num: "</span>))</div><div class="line">        <span class="keyword">if</span> guess_num == age:</div><div class="line">            print(<span class="string">"you got it!"</span>)</div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">elif</span> guess_num &gt; age:</div><div class="line">            print(<span class="string">"think small"</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            print(<span class="string">"think big"</span>)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        print(<span class="string">"try too many times!"</span>)</div><div class="line">        <span class="keyword">break</span></div></pre></td></tr></table></figure></the>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/04/20/2016-04-20-python-basic/">day01-python基础知识</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">wting</a></p>
+        <p><span>发布时间:</span>2016-04-20, 00:00:00</p>
+        <p><span>最后更新:</span>2016-08-19, 17:37:00</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/04/20/2016-04-20-python-basic/" title="day01-python基础知识">http://dxtywt.github.io/2016/04/20/2016-04-20-python-basic/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://dxtywt.github.io/2016/04/20/2016-04-20-python-basic/　　作者: wting" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/05/03/opration/">
+                    装饰器
+                </a>
+            </div>
+        
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量命名"><span class="toc-number">1.</span> <span class="toc-text">变量命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注释"><span class="toc-number">2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读取用户输入"><span class="toc-number">3.</span> <span class="toc-text">读取用户输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#格式化输出"><span class="toc-number">4.</span> <span class="toc-text">格式化输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导入模块"><span class="toc-number">5.</span> <span class="toc-text">导入模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-number">6.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#if-else"><span class="toc-number">6.1.</span> <span class="toc-text">if else</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#while"><span class="toc-number">6.2.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#for"><span class="toc-number">6.3.</span> <span class="toc-text">for</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"day01-python基础知识　| 小站　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://dxtywt.github.io/2016/04/20/2016-04-20-python-basic/';
+            this.page.identifier = '2016/04/20/2016-04-20-python-basic/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//wting1001.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/05/03/opration/" title="上一篇: 装饰器">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/14/2016-08-14-javascript/">JavaScript</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/07/2016-08-07-css/">Css小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/sqlalchemy/">SQLAlchemy 操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/31/2016-07-31-sqlalchmey/">mysql ORM 框架 SQLAlcemy 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/31/2016-07-31-paramiko/">paramiko 模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/24/2016-07-24-python-mysql/">mysql基本操作及python操作mysql</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/24/2016-07-24-rabbitmq-paramiko/">redis发布与订阅、rabbitmq、paramiko</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/17/2016-07-17-python-key-value/">python 操作 memcached、redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/17/2016-07-17-python-threading-processing-greenlet/">线程、进程、协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/10/2016-07-10-python-day10/">I/O 多路复用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/03/2016-07-03-python-socket/">Socket 网络编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/30/2016-06-30-python-image/">PIL 图像处理模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/多线程、进程、协程/">多线程、进程、协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/03/opration/">装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/20/2016-04-20-python-basic/">day01-python基础知识</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 wting
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
